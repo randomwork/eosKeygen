@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container">
+        <div class="text-center">
+            <img  style="margin-top: 20px" src="https://image.ibb.co/iE0GLf/rand-logo-light.png">
+            <h1 style="margin-top: 100px">EOS NEW KEY Creation</h1>
+            <p class="margin-auto"><br>As you may already know, it is not easy to create new key pairs if you are just new to EOS.<br>
+                We have made this EOS key Generator on django and node.js.<br>
+                <strong>We NEVER save your key pairs.</strong><br><br>
+                For transparency, we are hosting this code on Gitlab, you can view our full code by clicking the Gitlab logo below.<br><br>
+                <strong>YOU WILL NEVER GET THIS KEY PAIR AGAIN. YOU HAVE TO SAVE KEY PAIRS FIRST!<br></strong></p>
+        </div>
+
+
+
+        <div>
+            <div class="input-group input-group-lg" style="margin-bottom: 10px">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Public Key</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Public Key" id="showResultStatus" aria-describedby="inputGroup-sizing-sm" value="" readonly/>
+            </div>
+            <div class="input-group input-group-lg">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Private Key</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Private Key" id="showResultMessage" aria-describedby="inputGroup-sizing-sm" value="" readonly/>
+            </div>
+        </div>
+        <div class="text-center">
+            <p><input type="button" style="margin-top: 20px"class="btn btn-primary btn-lg" id="pushMe" value="Create EOS Key Pair!"/></p>
+        </div>
+        <div class="text-center">
+            <hr style="margin-top: 50px;">
+            <p style="color: gray" >All Rights Reserved. &copy; RANDOMWORK.IO, 2018</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $("#pushMe").click(function() {
+    console.log("Hello")
+    const url = 'http://127.0.0.1:8000/create';
+    const uri = '';
+    //fruit_id = $("#mySelect option:selected").val();
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: url + uri,
+        data: {
+             // request 파라메터 값
+             //'fruit_id': fruit_id
+        },
+        success: function(result) {
+            // response 비동기
+            $("#showResultStatus").val(result.public)
+            $("#showResultMessage").val(result.private)
+        }
+});
+});
+</script>
